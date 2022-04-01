@@ -8,14 +8,12 @@
 
 ## 使用方法
 
-需要小程序基础库版本 >= 2.2.3 的环境。
+需要小程序基础库版本 >= 1.0.0.598 的环境。
 
-也可以直接参考这个代码片段（在微信开发者工具中打开）： [https://developers.weixin.qq.com/s/nGvWJ2mL7et0](https://developers.weixin.qq.com/s/nGvWJ2mL7et0) 。
-
-1. 安装 `mobx-miniprogram` 和 `mobx-miniprogram-bindings` ：
+1. 安装 `mobx-miniprogram` 和 `npm i mobx-lark-miniprogram-bindings` ：
 
 ```shell
-npm install --save mobx-miniprogram mobx-miniprogram-bindings
+npm install --save mobx-miniprogram npm i mobx-lark-miniprogram-bindings
 ```
 
 2. 创建 MobX Store。
@@ -46,7 +44,7 @@ export const store = observable({
 3. 在 Component 构造器中使用：
 
 ```js
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { storeBindingsBehavior } from "npm i mobx-lark-miniprogram-bindings";
 import { store } from "./store";
 
 Component({
@@ -80,7 +78,7 @@ Component({
 如果需要比较好的兼容性，可以使用下面这种方式（或者直接改用 Component 构造器来创建页面）。
 
 ```js
-import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { createStoreBindings } from "npm i mobx-lark-miniprogram-bindings";
 import { store } from "./store";
 
 Page({
@@ -154,7 +152,7 @@ export const testBehavior = BehaviorWithStore({
 注意：你可以用 `Component` 构造器构造页面， [参考文档](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E4%BD%BF%E7%94%A8-Component-%E6%9E%84%E9%80%A0%E5%99%A8%E6%9E%84%E9%80%A0%E9%A1%B5%E9%9D%A2) 。
 
 ```js
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { storeBindingsBehavior } from "npm i mobx-lark-miniprogram-bindings";
 Component({
 	behaviors: [storeBindingsBehavior],
 	storeBindings: {
@@ -166,7 +164,7 @@ Component({
 也可以把 `storeBindings` 设置为一个数组，这样可以同时绑定多个 `store` ：
 
 ```js
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { storeBindingsBehavior } from "npm i mobx-lark-miniprogram-bindings";
 Component({
 	behaviors: [storeBindingsBehavior],
 	storeBindings: [
@@ -187,7 +185,7 @@ Component({
 注意：在页面 onUnload （自定义组件 detached ）时一定要调用清理函数，否则将导致内存泄漏！
 
 ```js
-import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { createStoreBindings } from "npm i mobx-lark-miniprogram-bindings";
 
 Page({
 	onLoad() {

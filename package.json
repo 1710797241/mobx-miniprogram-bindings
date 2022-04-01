@@ -1,6 +1,6 @@
 {
   "name": "mobx-lark-miniprogram-bindings",
-  "version": "2.1.6",
+  "version": "2.2.0",
   "description": "Mobx binding utils for lark miniprogram",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
