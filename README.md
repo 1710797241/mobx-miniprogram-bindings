@@ -1,4 +1,4 @@
-# 小程序的 MobX 绑定辅助库
+# lark 飞书小程序的 MobX 绑定辅助库
 
 小程序的 MobX 绑定辅助库。
 
@@ -25,21 +25,21 @@ npm install --save mobx-miniprogram mobx-miniprogram-bindings
 import { observable, action } from "mobx-miniprogram";
 
 export const store = observable({
-  // 数据字段
-  numA: 1,
-  numB: 2,
+	// 数据字段
+	numA: 1,
+	numB: 2,
 
-  // 计算属性
-  get sum() {
-    return this.numA + this.numB;
-  },
+	// 计算属性
+	get sum() {
+		return this.numA + this.numB;
+	},
 
-  // actions
-  update: action(function () {
-    const sum = this.sum;
-    this.numA = this.numB;
-    this.numB = sum;
-  }),
+	// actions
+	update: action(function () {
+		const sum = this.sum;
+		this.numA = this.numB;
+		this.numB = sum;
+	}),
 });
 ```
 
@@ -50,26 +50,26 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "./store";
 
 Component({
-  behaviors: [storeBindingsBehavior],
-  data: {
-    someData: "...",
-  },
-  storeBindings: {
-    store,
-    fields: {
-      numA: () => store.numA,
-      numB: (store) => store.numB,
-      sum: "sum",
-    },
-    actions: {
-      buttonTap: "update",
-    },
-  },
-  methods: {
-    myMethod() {
-      this.data.sum; // 来自于 MobX store 的字段
-    },
-  },
+	behaviors: [storeBindingsBehavior],
+	data: {
+		someData: "...",
+	},
+	storeBindings: {
+		store,
+		fields: {
+			numA: () => store.numA,
+			numB: store => store.numB,
+			sum: "sum",
+		},
+		actions: {
+			buttonTap: "update",
+		},
+	},
+	methods: {
+		myMethod() {
+			this.data.sum; // 来自于 MobX store 的字段
+		},
+	},
 });
 ```
 
@@ -84,22 +84,22 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "./store";
 
 Page({
-  data: {
-    someData: "...",
-  },
-  onLoad() {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ["numA", "numB", "sum"],
-      actions: ["update"],
-    });
-  },
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
-  },
-  myMethod() {
-    this.data.sum; // 来自于 MobX store 的字段
-  },
+	data: {
+		someData: "...",
+	},
+	onLoad() {
+		this.storeBindings = createStoreBindings(this, {
+			store,
+			fields: ["numA", "numB", "sum"],
+			actions: ["update"],
+		});
+	},
+	onUnload() {
+		this.storeBindings.destroyStoreBindings();
+	},
+	myMethod() {
+		this.data.sum; // 来自于 MobX store 的字段
+	},
 });
 ```
 
@@ -114,19 +114,19 @@ Page({
 ```js
 import { ComponentWithStore } from "mobx-miniprogram-binding";
 ComponentWithStore({
-  options: {
-    styleIsolation: "shared",
-  },
-  data: {
-    someData: "...",
-  },
-  storeBindings: {
-    store,
-    fields: ["numA", "numB", "sum"],
-    actions: {
-      buttonTap: "update",
-    },
-  },
+	options: {
+		styleIsolation: "shared",
+	},
+	data: {
+		someData: "...",
+	},
+	storeBindings: {
+		store,
+		fields: ["numA", "numB", "sum"],
+		actions: {
+			buttonTap: "update",
+		},
+	},
 });
 ```
 
@@ -135,11 +135,11 @@ ComponentWithStore({
 ```js
 import { BehaviorWithStore } from "mobx-miniprogram-binding";
 export const testBehavior = BehaviorWithStore({
-  storeBindings: {
-    store,
-    fields: ["numA", "numB", "sum"],
-    actions: ["update"],
-  },
+	storeBindings: {
+		store,
+		fields: ["numA", "numB", "sum"],
+		actions: ["update"],
+	},
 });
 ```
 
@@ -156,10 +156,10 @@ export const testBehavior = BehaviorWithStore({
 ```js
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 Component({
-  behaviors: [storeBindingsBehavior],
-  storeBindings: {
-    /* 绑定配置（见下文） */
-  },
+	behaviors: [storeBindingsBehavior],
+	storeBindings: {
+		/* 绑定配置（见下文） */
+	},
 });
 ```
 
@@ -168,15 +168,15 @@ Component({
 ```js
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 Component({
-  behaviors: [storeBindingsBehavior],
-  storeBindings: [
-    {
-      /* 绑定配置 1 */
-    },
-    {
-      /* 绑定配置 2 */
-    },
-  ],
+	behaviors: [storeBindingsBehavior],
+	storeBindings: [
+		{
+			/* 绑定配置 1 */
+		},
+		{
+			/* 绑定配置 2 */
+		},
+	],
 });
 ```
 
@@ -190,14 +190,14 @@ Component({
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 
 Page({
-  onLoad() {
-    this.storeBindings = createStoreBindings(this, {
-      /* 绑定配置（见下文） */
-    });
-  },
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
-  },
+	onLoad() {
+		this.storeBindings = createStoreBindings(this, {
+			/* 绑定配置（见下文） */
+		});
+	},
+	onUnload() {
+		this.storeBindings.destroyStoreBindings();
+	},
 });
 ```
 
@@ -249,8 +249,8 @@ Page({
 
 ```js
 Component({
-  behaviors: [storeBindingsBehavior, computedBehavior],
-  /* ... */
+	behaviors: [storeBindingsBehavior, computedBehavior],
+	/* ... */
 });
 ```
 
@@ -260,11 +260,11 @@ Component({
 
 ```js
 Component({
-  behaviors: [storeBindingsBehavior],
-  storeBindings: {
-    store,
-    fields: ["someObject"],
-  },
+	behaviors: [storeBindingsBehavior],
+	storeBindings: {
+		store,
+		fields: ["someObject"],
+	},
 });
 ```
 

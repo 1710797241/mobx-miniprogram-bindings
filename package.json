@@ -1,7 +1,7 @@
 {
-  "name": "mobx-miniprogram-bindings",
+  "name": "mobx-lark-miniprogram-bindings",
   "version": "2.1.5",
-  "description": "Mobx binding utils for WeChat miniprogram",
+  "description": "Mobx binding utils for lark miniprogram",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
